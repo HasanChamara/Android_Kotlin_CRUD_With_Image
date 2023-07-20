@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1079956672435",
+    "project_id": "kotlin-crud-with-image",
+    "storage_bucket": "kotlin-crud-with-image.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079956672435:android:fe723ffd7723eef0ebc5c6",
+        "android_client_info": {
+          "package_name": "com.example.kotlincrudwithimage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079956672435-i5n32bue8p2tp751g07bm7jgpo2b799k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW37OwhJ2gEtMT7NDza7XMXhpS7Ircg7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079956672435-i5n32bue8p2tp751g07bm7jgpo2b799k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
