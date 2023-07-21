@@ -22,7 +22,7 @@ class ProductInsertActivity : AppCompatActivity() {
     private lateinit var productDescriptionEditText: EditText
     private lateinit var productImageView: ImageView
     private lateinit var insertButton: Button
-//    private lateinit var selectedImageUri: Uri
+    private lateinit var buttonProductGrid: Button
     private var selectedImageUri: Uri? = null // Initialize as null
 
     // Firebase variables
@@ -38,6 +38,7 @@ class ProductInsertActivity : AppCompatActivity() {
         productDescriptionEditText = findViewById(R.id.editTextProductDescription)
         productImageView = findViewById(R.id.imageViewProduct)
         insertButton = findViewById(R.id.buttonInsert)
+        buttonProductGrid = findViewById(R.id.buttonProductGrid)
 
         // Initialize Firebase Storage and Firestore references
         storageReference = FirebaseStorage.getInstance().reference
@@ -49,6 +50,11 @@ class ProductInsertActivity : AppCompatActivity() {
 
         insertButton.setOnClickListener {
             insertProduct()
+        }
+
+        buttonProductGrid.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -89,22 +95,28 @@ class ProductInsertActivity : AppCompatActivity() {
             .addOnSuccessListener { taskSnapshot ->
                 // Get the download URL of the uploaded image
                 imageRef.downloadUrl.addOnSuccessListener { uri ->
-                    val product = hashMapOf(
-                        "name" to productName,
-                        "price" to productPrice.toDouble(),
-                        "description" to productDescription,
-                        "imageUrl" to uri.toString()
+                    val productId = UUID.randomUUID().toString() // Generate a unique ID
+                    val product = Product(
+                        id = productId,
+                        name = productName,
+                        price = productPrice.toDouble(),
+                        description = productDescription,
+                        imageUrl = uri.toString()
                     )
 
-                    // Save the product to Firestore
+                    // Save the product to Firestore with the generated ID
                     firestore.collection("products")
-                        .add(product)
+                        .document(productId)
+                        .set(product)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Product inserted successfully.", Toast.LENGTH_SHORT).show()
-                            clearFields()
+//                            clearFields()
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
                         }
                         .addOnFailureListener {
                             Toast.makeText(this, "Failed to insert product.", Toast.LENGTH_SHORT).show()
+                            clearFields()
                         }
                 }
             }
