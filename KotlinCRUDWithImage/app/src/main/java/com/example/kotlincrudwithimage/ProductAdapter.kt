@@ -37,7 +37,7 @@ class ProductAdapter(private val productList: List<Product>, private val listene
 
         fun bind(product: Product) {
             textViewProductName.text = product.name
-            textViewProductPrice.text = "$" + product.price.toString()
+            textViewProductPrice.text = "Rs " + product.price.toString()
 
             // Load the product image using Picasso
             Picasso.get().load(product.imageUrl).into(imageViewProduct)
