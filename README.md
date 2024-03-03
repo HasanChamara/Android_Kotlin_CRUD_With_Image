@@ -3,4 +3,4 @@ All CRUD Operations
 Add Images
 Edit Image
 Delete Image
-Pic image
+Pic image.
