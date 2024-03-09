@@ -2,5 +2,5 @@
 All CRUD Operations
 Add Images
 Edit Image
-Delete Image
+Delete Image.
 Pic image.
